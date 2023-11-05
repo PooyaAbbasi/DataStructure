@@ -1,0 +1,26 @@
+# ninja log v5
+8	494	7207878420351893	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+494	602	7207878421399062	untitled3.exe	3f8d4a07b207355
+3	71	7207868043353920	CMakeFiles/untitled3.dir/Stack_int.cpp.obj	8324cfec8ac9acc4
+3	64	7207878416056464	CMakeFiles/untitled3.dir/Stack_char.cpp.obj	c178901561d518a8
+3	479	7207886825789580	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+7	490	7207886825909249	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+491	607	7207886827039804	untitled3.exe	cfc9c0a1926c05f7
+3	461	7207887174750963	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+466	576	7207887175878039	untitled3.exe	cfc9c0a1926c05f7
+11	699	7208967096846206	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+4	745	7208967097314961	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+745	998	7208967099788336	untitled3.exe	cfc9c0a1926c05f7
+3	484	7208968862058592	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+7	498	7208968862198229	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+498	613	7208968863273967	untitled3.exe	cfc9c0a1926c05f7
+2	474	7208970623857946	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+475	591	7208970624952235	untitled3.exe	cfc9c0a1926c05f7
+3	490	7208973349894577	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+491	608	7208973351031789	untitled3.exe	cfc9c0a1926c05f7
+3	481	7208976828980906	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+481	594	7208976830085575	untitled3.exe	cfc9c0a1926c05f7
+2	466	7208979038402442	CMakeFiles/untitled3.dir/ExpressionEvaluator.cpp.obj	684e3dae3e91cfdb
+467	580	7208979039501738	untitled3.exe	cfc9c0a1926c05f7
+3	479	7208979278734771	CMakeFiles/untitled3.dir/main.cpp.obj	b7f7c8bfa0e732c6
+479	594	7208979279861752	untitled3.exe	cfc9c0a1926c05f7
