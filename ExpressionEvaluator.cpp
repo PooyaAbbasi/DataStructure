@@ -12,6 +12,7 @@ bool is_operator(char ch) {
         return true;
     } else
         return false;
+    return (operators.find(ch) != string::npos);
 }
 
 bool is_operator_or_openParentheses(char ch) {
@@ -39,7 +40,7 @@ int getNumOfOperators(string &exp) {
     return num_of_ops;
 }
 
-int get_num_of_vars(string &exp) {
+int get_num_of_char_vars_and_values(string &exp) {
     int num_of_vars = 0;
     for (char c: exp) {
         if (isalnum(c)) {
@@ -50,7 +51,25 @@ int get_num_of_vars(string &exp) {
 }
 
 
+int get_num_of_vars(string &exp){
+    int num_of_vars = 0;
+    for (int i = 0; i < exp.length(); ++i) {
+        if (isalpha(exp[i])) {
+            num_of_vars++;
+        } else if (isdigit(exp[i])) {
+
+            do i++;
+            while (isdigit(exp[i]));
+            i--; // because it will be increased in end of loop
+            num_of_vars++;
+        }
+    }
+    return num_of_vars;
+}
+
+
 void to_post_fix(string expression, char *postfix) {
+
     int size_exp = (int) expression.length();
 
     int num_of_operators = getNumOfOperators(expression);
@@ -84,10 +103,21 @@ int get_int_value_of(char digit_char){
 void determine_values_of_vars_in(const char *postfix, int *values) {
 
     while (*postfix) {
-        if (isalnum(*postfix)) {
+        if (isalpha(*postfix)) {
             cout << "\nenter the value of " << *postfix << " :";
             cin >> *values;
             values++;
+        } else if (isdigit(*postfix)) {
+            int number = 0;
+            do {  // take out the int value of digit chars
+                number *= 10;
+                number += get_int_value_of(*postfix);
+                postfix++;
+            } while (isdigit(*postfix));
+//            cout << number << endl;
+            *values = number;
+            values++;
+            postfix--; // because postfix will be increased in the end of loop
         }
         postfix++;
     }
@@ -116,22 +146,26 @@ int prefix_to_result(char *postfix, int* values, int num_of_vars, int size_postf
 
 
     while (*postfix) {
-        if (isalnum(*postfix)) {
+        if (isalpha(*postfix)) {
             stackInt.push(*values);
             values ++;
-            postfix++;
         } else if (is_operator(*postfix)) {
             int second_var = stackInt.pop();
             int first_var = stackInt.pop();
 
             int result = get_result_of_statement(first_var, second_var, *postfix);
-            cout << "result :" << result << endl;
+//            cout << "result :" << result << endl;
             stackInt.push(result);
-            postfix++;
+        } else if (isdigit(*postfix)) {
+            stackInt.push(*values);
+            values++;
+            do { // move the postfix ptr to after the digits
+                postfix++;
+            } while (isdigit(*postfix));
+            postfix--; // because postfix will be increased in the end of loop
         }
-        
+        postfix++;
     }
-
 
     return stackInt.pop();
 

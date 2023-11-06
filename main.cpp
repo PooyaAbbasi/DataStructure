@@ -3,9 +3,6 @@
 #include <cmath>
 #include "ExpressionEvaluator.h"
 
-#define size_l1 6
-#define size_l2 4
-#define size_l 10
 using namespace std;
 
 
@@ -56,12 +53,13 @@ int main() {
     }*/ // sort_combined_two_array
 
 
-    string exp = "((((r-t)^2)+(8/k))*2)";
+    string exp = "((((22-t)^2)+(80/k))*2)";
     int size_exp = (int) exp.length();
 
     int num_of_operators = getNumOfOperators(exp);
-    int num_of_vars = get_num_of_vars(exp);
-    int size_postfix = num_of_operators + num_of_vars;
+    int numOfCharVarsAndValues = get_num_of_char_vars_and_values(exp);
+
+    int size_postfix = num_of_operators + numOfCharVarsAndValues;
     char postfix[size_postfix + 1];
     postfix[size_postfix] = '\0';
 
@@ -72,7 +70,7 @@ int main() {
         cout << c;
     }
 
-    int values[num_of_vars];
+    int values[get_num_of_vars(exp)];
     determine_values_of_vars_in(postfix, values);
 
 
@@ -81,7 +79,7 @@ int main() {
     } // print values array
     // infix to postfix
 
-    int result = prefix_to_result(postfix, values, num_of_vars, size_postfix);
+    int result = prefix_to_result(postfix, values, numOfCharVarsAndValues, size_postfix);
 
     cout << "result is : " << result << endl;
 
