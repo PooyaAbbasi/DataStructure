@@ -124,9 +124,12 @@ int prefix_to_result(char *postfix, int* values, int num_of_vars, int size_postf
             int second_var = stackInt.pop();
             int first_var = stackInt.pop();
 
-            stackInt.push(get_result_of_statement(first_var, second_var, *postfix));
+            int result = get_result_of_statement(first_var, second_var, *postfix);
+            cout << "result :" << result << endl;
+            stackInt.push(result);
             postfix++;
         }
+        
     }
 
 
