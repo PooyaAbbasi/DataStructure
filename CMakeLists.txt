@@ -12,4 +12,6 @@ add_executable(untitled3 main.cpp
         ExpressionEvaluator.cpp
         recursion.h
         recursion.cpp
+        Queue.cpp
+        Queue.h
 )
