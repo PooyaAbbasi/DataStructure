@@ -2,6 +2,7 @@
 #include <string>
 #include <cmath>
 #include "ExpressionEvaluator.h"
+#include "Queue.h"
 
 using namespace std;
 
@@ -79,9 +80,17 @@ int main() {
     } // print values array
     // infix to postfix
 
-    int result = prefix_to_result(postfix, values, numOfCharVarsAndValues, size_postfix);
+    int result = postfixTOResult(postfix, values, numOfCharVarsAndValues, size_postfix);
 
-    cout << "result is : " << result << endl;
+    cout << "result is : " << result << endl; // Expression Evaluation
 
+
+    /*Queue<int> queue(8);
+
+    queue.insert(5);
+    queue.insert(9);
+    queue.insert(98);
+    cout << queue.delete_() << endl ;
+*/
     return 0;
 }

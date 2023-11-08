@@ -75,7 +75,7 @@ void to_post_fix(string expression, char *postfix) {
     int num_of_operators = getNumOfOperators(expression);
     int num_of_open_parenthesis = numOfOpenParenthesesOf(expression);
 
-    Stack_char op_stack(num_of_operators + num_of_open_parenthesis);
+    Stack<char> op_stack(num_of_operators + num_of_open_parenthesis);
 
     for (int i = 0; i < size_exp; ++i) {
         if (isalnum(expression[i])) {
@@ -141,8 +141,8 @@ int get_result_of_statement(int first_var, int second_var, char operation){
     }
 }
 
-int prefix_to_result(char *postfix, int* values, int num_of_vars, int size_postfix){
-    Stack_int stackInt(num_of_vars);
+int postfixTOResult(char *postfix, int* values, int num_of_vars, int size_postfix){
+    Stack<int> stackInt(num_of_vars);
 
 
     while (*postfix) {
