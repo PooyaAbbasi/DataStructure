@@ -12,4 +12,5 @@ add_executable(untitled3 main.cpp
         Queue.h
         Term.cpp
         Term.h
+        Polynomial.h
 )

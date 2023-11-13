@@ -3,7 +3,8 @@
 #include <cmath>
 #include "ExpressionEvaluator.h"
 #include "Queue.h"
-
+#include "Polynomial.h"
+#include "Term.h"
 using namespace std;
 
 
@@ -54,7 +55,7 @@ int main() {
     }*/ // sort_combined_two_array
 
 
-    string exp = "((((22-t)^2)+(80/k))*2)";
+    /*string exp = "((((22-t)^2)+(80/k))*2)";
     int size_exp = (int) exp.length();
 
     int num_of_operators = getNumOfOperators(exp);
@@ -82,15 +83,30 @@ int main() {
 
     int result = postfixTOResult(postfix, values, numOfCharVarsAndValues, size_postfix);
 
-    cout << "result is : " << result << endl; // Expression Evaluation
+    cout << "result is : " << result << endl;*/// Expression Evaluation
 
+
+
+    Polynomial p = Polynomial::getFromUser();
+
+    Polynomial p3 = Polynomial::getFromUser();
+
+    p.print();
+
+    p3.print();
+    p.add(p3); //
+    p.print();
+
+    cout << p.findTermAccordingToExponential(1)<< endl;
+    cout << p.findTermAccordingToExponential(3)<< endl;
+    cout << p.findTermAccordingToExponential(8)<< endl;
+    p.findTermAccordingToExponential(8);
 
     /*Queue<int> queue(8);
 
     queue.insert(5);
     queue.insert(9);
     queue.insert(98);
-    cout << queue.delete_() << endl ;
-*/
+    cout << queue.delete_() << endl ;*/
     return 0;
 }
