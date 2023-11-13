@@ -4,7 +4,6 @@
 #include "ExpressionEvaluator.h"
 #include "Queue.h"
 #include "Polynomial.h"
-#include "Term.h"
 using namespace std;
 
 

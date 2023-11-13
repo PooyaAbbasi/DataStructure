@@ -10,7 +10,5 @@ add_executable(untitled3 main.cpp
         recursion.h
         recursion.cpp
         Queue.h
-        Term.cpp
-        Term.h
         Polynomial.h
 )
