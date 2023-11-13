@@ -93,7 +93,7 @@ int main() {
     p.print();
 
     p3.print();
-    p.add(p3); //
+    p.multiply(p3);
     p.print();
 
     cout << p.findTermAccordingToExponential(1)<< endl;
