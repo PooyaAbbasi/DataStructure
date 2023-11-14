@@ -1,5 +1,5 @@
 //
-// Created by abasiy on ۰۹/۱۱/۲۰۲۳.
+// Created by abbasi on ۰۹/۱۱/۲۰۲۳.
 //
 #ifndef UNTITLED3_POLYNOMIAL_H
 #define UNTITLED3_POLYNOMIAL_H
@@ -15,7 +15,7 @@ struct Term{
 
 const Term empty_term = {0, 0};
 
-Term *createEmptyArrayOfTermsWith(int len){
+Term *createArrayOfEmptyTermsWith(int len){
     Term* empty_terms = new Term[len];
     for (int i = 0; i < len; ++i) {
         empty_terms[i].ex = 0;
@@ -33,6 +33,9 @@ private:
     Term* terms;
 
     void setFirstEmptyTermPosition(){
+        /**
+         * find the first term with coeff 0, and set its index
+         * else first empty term index = len */
         this->firstEmptyTermIndex = this->len;
         for (int i = 0; i < this->len; ++i ) {
             if (this->terms[i].coeff == 0) {
@@ -102,7 +105,7 @@ public:
         /**
          * create array of terms with length */
         this->len = length;
-        this->terms = createEmptyArrayOfTermsWith(length);
+        this->terms = createArrayOfEmptyTermsWith(length);
 
         for (int i = 0; i < length; ++i) {
             if (terms[i].coeff == 0) {
@@ -120,7 +123,7 @@ public:
          * create a Polynomial with len terms which is Initialized ex, coeff to 0*/
         this->len = len;
         this->firstEmptyTermIndex = 0;
-        this->terms = createEmptyArrayOfTermsWith(len);
+        this->terms = createArrayOfEmptyTermsWith(len);
 
     }
 
@@ -135,7 +138,7 @@ public:
 
         int new_needed_len = (this->len + toAdd_pol.len);
 
-        Term* new_polynomial = createEmptyArrayOfTermsWith(new_needed_len);
+        Term* new_polynomial = createArrayOfEmptyTermsWith(new_needed_len);
         for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
             new_polynomial[i] = this->terms[i];
         }
@@ -169,12 +172,14 @@ public:
     }
 
     void multiply(const Polynomial& toMultiply_pol){
+        /**
+         * change the this polynomial to a simplified and sorted polynomial of multiply of this and toMultiply_pol */
 
         int new_needed_len = (this->firstEmptyTermIndex * toMultiply_pol.firstEmptyTermIndex);
         // to decrease the space complexity we can use multiply of the first empty term index of both
         // polynomials as the new len for result polynomial
 
-        Term* result_polynomial = createEmptyArrayOfTermsWith(new_needed_len);
+        Term* result_polynomial = createArrayOfEmptyTermsWith(new_needed_len);
 
         int index_of_result_pol = 0;
         Term term1{}, term2{};
@@ -220,15 +225,17 @@ public:
 
     }
 
-    int findTermAccordingToExponential(int exponential){
+    int findTermAccordingToExponential(int exponent){
+        /**
+         * return index of term with ex = exponent with binary search algorithm */
         int left = 0;
         int right = this->firstEmptyTermIndex;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (terms[mid].ex == exponential) {
+            if (terms[mid].ex == exponent) {
                 return mid;
             }
-            if (terms[mid].ex > exponential) {
+            if (terms[mid].ex > exponent) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
@@ -238,6 +245,8 @@ public:
     }
 
     void sort(){
+        /**
+         * sort polynomial according to exponents in descending order */
         mergeSort(this->terms, 0, this->len-1);
         this->setFirstEmptyTermPosition();
     }
@@ -277,6 +286,9 @@ public:
     }
 
     int calculate(int x){
+        /**
+         * replace the x variable in polynomial, calculate and returns the result */
+
         int result = 0;
         int term_result;
         for (int i = 0; i < this->firstEmptyTermIndex ; ++i) {
