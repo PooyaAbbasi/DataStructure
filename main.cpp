@@ -90,16 +90,15 @@ int main() {
 
     Polynomial p3 = Polynomial::getFromUser();
 
+    p.calculate(3);
     p.print();
 
     p3.print();
     p.multiply(p3);
     p.print();
+    p.multiply(p3);
+    p.print();
 
-    cout << p.findTermAccordingToExponential(1)<< endl;
-    cout << p.findTermAccordingToExponential(3)<< endl;
-    cout << p.findTermAccordingToExponential(8)<< endl;
-    p.findTermAccordingToExponential(8);
 
     /*Queue<int> queue(8);
 

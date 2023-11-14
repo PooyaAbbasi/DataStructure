@@ -4,6 +4,7 @@
 #ifndef UNTITLED3_POLYNOMIAL_H
 #define UNTITLED3_POLYNOMIAL_H
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -28,14 +29,14 @@ class Polynomial {
 private:
 
     int len;
-    int lastEmptyTermIndex;
+    int firstEmptyTermIndex; // to remain the first term with coefficient 0, and exponent 0;
     Term* terms;
 
-    void setLastEmptyTermPosition(){
-        this->lastEmptyTermIndex = this->len;
+    void setFirstEmptyTermPosition(){
+        this->firstEmptyTermIndex = this->len;
         for (int i = 0; i < this->len; ++i ) {
             if (this->terms[i].coeff == 0) {
-                this->lastEmptyTermIndex = i;
+                this->firstEmptyTermIndex = i;
                 break;
             }
         }
@@ -111,14 +112,14 @@ public:
             this->terms[i] = terms[i];
         }
         this->sort();
-        this->setLastEmptyTermPosition();
+        this->setFirstEmptyTermPosition();
     }
 
     Polynomial(int len){
         /**
          * create a Polynomial with len terms which is Initialized ex, coeff to 0*/
         this->len = len;
-        this->lastEmptyTermIndex = 0;
+        this->firstEmptyTermIndex = 0;
         this->terms = createEmptyArrayOfTermsWith(len);
 
     }
@@ -135,7 +136,7 @@ public:
         int new_needed_len = (this->len + toAdd_pol.len);
 
         Term* new_polynomial = createEmptyArrayOfTermsWith(new_needed_len);
-        for (int i = 0; i < this->lastEmptyTermIndex; ++i) {
+        for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
             new_polynomial[i] = this->terms[i];
         }
         delete[] terms;
@@ -144,7 +145,7 @@ public:
 
         int index_of_match_term;
         int sumOfCoeffs;
-        for (int i = 0; i < toAdd_pol.lastEmptyTermIndex ; ++i) {
+        for (int i = 0; i < toAdd_pol.firstEmptyTermIndex ; ++i) {
 
             Term &to_add_term = toAdd_pol.terms[i];
             index_of_match_term = this->findTermAccordingToExponential(to_add_term.ex);
@@ -158,27 +159,29 @@ public:
                 }
 
             } else {
-                new_polynomial[this->lastEmptyTermIndex] = to_add_term;
-                this->lastEmptyTermIndex++;
+                new_polynomial[this->firstEmptyTermIndex] = to_add_term;
+                this->firstEmptyTermIndex++;
             }
         }
 
         this->sort();
-        this->setLastEmptyTermPosition();
+        this->setFirstEmptyTermPosition();
     }
 
     void multiply(const Polynomial& toMultiply_pol){
 
-        int new_needed_len = (this->len * toMultiply_pol.len);
+        int new_needed_len = (this->firstEmptyTermIndex * toMultiply_pol.firstEmptyTermIndex);
+        // to decrease the space complexity we can use multiply of the first empty term index of both
+        // polynomials as the new len for result polynomial
 
         Term* result_polynomial = createEmptyArrayOfTermsWith(new_needed_len);
 
         int index_of_result_pol = 0;
         Term term1{}, term2{};
-        for (int i = 0; i < this->lastEmptyTermIndex; ++i) {
+        for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
             term1 = this->terms[i];
 
-            for (int j = 0; j < toMultiply_pol.lastEmptyTermIndex; ++j, ++index_of_result_pol) {
+            for (int j = 0; j < toMultiply_pol.firstEmptyTermIndex; ++j, ++index_of_result_pol) {
                 term2 = toMultiply_pol.terms[j];
                 result_polynomial[index_of_result_pol].coeff = term1.coeff * term2.coeff;
                 result_polynomial[index_of_result_pol].ex = term1.ex + term2.ex;
@@ -213,13 +216,13 @@ public:
         this->terms = result_polynomial;
         this->len = new_needed_len;
         this->sort();
-        this->setLastEmptyTermPosition();
+        this->setFirstEmptyTermPosition();
 
     }
 
     int findTermAccordingToExponential(int exponential){
         int left = 0;
-        int right = this->lastEmptyTermIndex;
+        int right = this->firstEmptyTermIndex;
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (terms[mid].ex == exponential) {
@@ -236,7 +239,7 @@ public:
 
     void sort(){
         mergeSort(this->terms, 0, this->len-1);
-        this->setLastEmptyTermPosition();
+        this->setFirstEmptyTermPosition();
     }
 
     void print(){
@@ -244,7 +247,7 @@ public:
             cout << "(" << this->terms[i].coeff << "x^" << this->terms[i].ex << ") +";
         }
         cout << "\b\b";
-        cout << "   the last empty index : " << this->lastEmptyTermIndex << endl;
+        cout << "   the first empty index : " << this->firstEmptyTermIndex << endl;
         cout << " len: " << this->len << endl;
 
     }
@@ -261,18 +264,32 @@ public:
 
         for (int i = 0; i < length; ++i) {
             cout << "Polynomial " << i+1 << ":" << endl;
-            cout << "exponent: ";
-            cin >> p.terms[i].ex;
             cout << "coefficient: ";
             cin >> p.terms[i].coeff;
-            p.lastEmptyTermIndex++;
+            cout << "exponent: ";
+            cin >> p.terms[i].ex;
+            p.firstEmptyTermIndex++;
         }
         p.sort();
-        p.setLastEmptyTermPosition();
+        p.setFirstEmptyTermPosition();
 
         return p;
     }
 
+    int calculate(int x){
+        int result = 0;
+        int term_result;
+        for (int i = 0; i < this->firstEmptyTermIndex ; ++i) {
+            term_result = (int) pow(x, this->terms[i].ex);
+            term_result *= this->terms[i].coeff;
+            result += term_result;
+        }
+
+        cout << " calculate polynomial:" << endl;
+        this->print();
+        cout << " x = " << x << " result = " << result << endl;
+        return result;
+    }
 };
 
 
