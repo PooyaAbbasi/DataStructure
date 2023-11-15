@@ -54,7 +54,7 @@ int main() {
     }*/ // sort_combined_two_array
 
 
-    /*string exp = "((((22-t)^2)+(80/k))*2)";
+    string exp = "((((22-k)^t)+(80/t))*2)";
     int size_exp = (int) exp.length();
 
     int num_of_operators = getNumOfOperators(exp);
@@ -72,32 +72,32 @@ int main() {
     }
 
     int values[get_num_of_vars(exp)];
-    determine_values_of_vars_in(postfix, values);
+    set_values_array(postfix, values);
 
-
+    cout << " \n values in order of post fix variables: \n";
     for (int c: values) {
         cout << c << endl;
     } // print values array
     // infix to postfix
 
-    int result = postfixTOResult(postfix, values, numOfCharVarsAndValues, size_postfix);
+    int result = postfixToResult(postfix, values, numOfCharVarsAndValues);
 
-    cout << "result is : " << result << endl;*/// Expression Evaluation
+    cout << "result is : " << result << endl;// Expression Evaluation
 
 
 
-    Polynomial p = Polynomial::getFromUser();
+    /*Polynomial p = Polynomial::getFromUser();
 
     Polynomial p3 = Polynomial::getFromUser();
 
-    p.calculate(3);
     p.print();
-
     p3.print();
+    p.calculate(3);
+    p.add(p3);
     p.multiply(p3);
     p.print();
     p.multiply(p3);
-    p.print();
+    p.print();*/ // polynomial
 
 
     /*Queue<int> queue(8);

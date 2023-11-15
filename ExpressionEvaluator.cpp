@@ -5,6 +5,10 @@
 #include "ExpressionEvaluator.h"
 #include <iostream>
 #include <cmath>
+#include <string>
+
+string unique_vars;
+int *values_of_unique_vars;
 
 bool is_operator(char ch) {
     string operators = "+-*/^%";
@@ -50,24 +54,6 @@ int get_num_of_char_vars_and_values(string &exp) {
     return num_of_vars;
 }
 
-
-int get_num_of_vars(string &exp){
-    int num_of_vars = 0;
-    for (int i = 0; i < exp.length(); ++i) {
-        if (isalpha(exp[i])) {
-            num_of_vars++;
-        } else if (isdigit(exp[i])) {
-
-            do i++;
-            while (isdigit(exp[i]));
-            i--; // because it will be increased in end of loop
-            num_of_vars++;
-        }
-    }
-    return num_of_vars;
-}
-
-
 void to_post_fix(string expression, char *postfix) {
 
     int size_exp = (int) expression.length();
@@ -95,33 +81,72 @@ void to_post_fix(string expression, char *postfix) {
     }
 }
 
-int get_int_value_of(char digit_char){
+int get_num_of_vars(string &exp){
+    int num_of_vars = 0;
+    for (int i = 0; i < exp.length(); ++i) {
+        if (isalpha(exp[i])) {
+            num_of_vars++;
+        } else if (isdigit(exp[i])) {
+
+            do i++;
+            while (isdigit(exp[i]));
+            i--; // because it will be increased in end of loop
+            num_of_vars++;
+        }
+    }
+    return num_of_vars;
+}
+
+
+void determine_unique_vars(const char *postfix){
+
+    while (*postfix){
+        if (isalpha(*postfix) && unique_vars.find(*postfix) == string::npos) {
+            unique_vars += *postfix;
+        }
+        postfix ++;
+    }
+
+    values_of_unique_vars = new int[unique_vars.length()];
+
+    for (int i = 0; i < unique_vars.length() ; ++i) {
+        cout << "\n enter the value of " << unique_vars[i] << " :";
+        cin >> values_of_unique_vars[i];
+    }
+}
+
+int get_value_of_var(char var){
+    return values_of_unique_vars[unique_vars.find(var)];
+}
+
+int get_int_of_digit_char(char digit_char){
     return (int) (digit_char - '0');
 }
 
 
-void determine_values_of_vars_in(const char *postfix, int *values) {
+void set_values_array(const char *postfix, int *values) {
+
+    determine_unique_vars(postfix);
 
     while (*postfix) {
         if (isalpha(*postfix)) {
-            cout << "\nenter the value of " << *postfix << " :";
-            cin >> *values;
+            *values = get_value_of_var(*postfix);
             values++;
         } else if (isdigit(*postfix)) {
             int number = 0;
             do {  // take out the int value of digit chars
                 number *= 10;
-                number += get_int_value_of(*postfix);
+                number += get_int_of_digit_char(*postfix);
                 postfix++;
             } while (isdigit(*postfix));
 //            cout << number << endl;
             *values = number;
             values++;
+
             postfix--; // because postfix will be increased in the end of loop
         }
         postfix++;
     }
-
 }
 
 int get_result_of_statement(int first_var, int second_var, char operation){
@@ -141,7 +166,7 @@ int get_result_of_statement(int first_var, int second_var, char operation){
     }
 }
 
-int postfixTOResult(char *postfix, int* values, int num_of_vars, int size_postfix){
+int postfixToResult(char *postfix, int* values, int num_of_vars){
     Stack<int> stackInt(num_of_vars);
 
 
@@ -167,7 +192,7 @@ int postfixTOResult(char *postfix, int* values, int num_of_vars, int size_postfi
         postfix++;
     }
 
-    return stackInt.pop();
+    return stackInt.pop();  // last value in Stack is the result
 
 }
 
