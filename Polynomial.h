@@ -138,12 +138,12 @@ public:
 
         int new_needed_len = (this->len + toAdd_pol.len);
 
-        Term* new_polynomial = createArrayOfEmptyTermsWith(new_needed_len);
+        Term* result_pol = createArrayOfEmptyTermsWith(new_needed_len);
         for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
-            new_polynomial[i] = this->terms[i];
+            result_pol[i] = this->terms[i];
         }
         delete[] terms;
-        this->terms = new_polynomial;
+        this->terms = result_pol;
         this->len = new_needed_len;
 
         int index_of_match_term;
@@ -154,15 +154,15 @@ public:
             index_of_match_term = this->findTermAccordingToExponential(to_add_term.ex);
 
             if (index_of_match_term != -1) {
-                sumOfCoeffs = new_polynomial[index_of_match_term].coeff + to_add_term.coeff;
+                sumOfCoeffs = result_pol[index_of_match_term].coeff + to_add_term.coeff;
                 if ( sumOfCoeffs != 0){
-                    new_polynomial[index_of_match_term].coeff = sumOfCoeffs;
+                    result_pol[index_of_match_term].coeff = sumOfCoeffs;
                 } else {
-                    new_polynomial[index_of_match_term] = empty_term;
+                    result_pol[index_of_match_term] = empty_term;
                 }
 
             } else {
-                new_polynomial[this->firstEmptyTermIndex] = to_add_term;
+                result_pol[this->firstEmptyTermIndex] = to_add_term;
                 this->firstEmptyTermIndex++;
             }
         }
@@ -192,10 +192,6 @@ public:
                 result_polynomial[index_of_result_pol].ex = term1.ex + term2.ex;
             }
         }
-
-        Polynomial temp(result_polynomial, new_needed_len);
-        cout << "\n temp : \n";
-        temp.print();
 
         delete[] this->terms;
 
@@ -261,18 +257,18 @@ public:
 
     }
 
-    static Polynomial getFromUser(){
+    static Polynomial getFromConsole(){
         /**
          * get data from console for a Polynomial and returns it */
 
-        cout << " Enter the length of Polynomial: ";
+        cout << " Enter the length of terms of your Polynomial: ";
         int length;
         cin >> length;
 
         Polynomial p(length);
 
         for (int i = 0; i < length; ++i) {
-            cout << "Polynomial " << i+1 << ":" << endl;
+            cout << "Term " << i+1 << ":" << endl;
             cout << "coefficient: ";
             cin >> p.terms[i].coeff;
             cout << "exponent: ";

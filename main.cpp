@@ -86,21 +86,21 @@ int main() {
 
 
 
-    /*Polynomial p = Polynomial::getFromUser();
+    Polynomial p = Polynomial::getFromConsole();
 
-    Polynomial p3 = Polynomial::getFromUser();
+    Polynomial p3 = Polynomial::getFromConsole();
 
     p.print();
     p3.print();
     p.calculate(3);
-    p.add(p3);
-    p.multiply(p3);
+//    p.add(p3);
+//    p.multiply(p3);
     p.print();
     p.multiply(p3);
-    p.print();*/ // polynomial
+    p.print(); // polynomial
 
 
-    Queue<int> queue(4);
+    /*Queue<int> queue(4);
 
     queue.insert(5);
     queue.insert(9);
@@ -112,6 +112,7 @@ int main() {
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;
-    cout << queue.delete_() << endl ;
+    cout << queue.delete_() << endl ;*/// Queue execution
+
     return 0;
 }
