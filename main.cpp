@@ -54,7 +54,7 @@ int main() {
     }*/ // sort_combined_two_array
 
 
-    string exp = "((((22-k)^t)+(80/t))*2)";
+    /*string exp = "((((22-k)^t)+(80/t))*2)";
     int size_exp = (int) exp.length();
 
     int num_of_operators = getNumOfOperators(exp);
@@ -82,7 +82,7 @@ int main() {
 
     int result = postfixToResult(postfix, values, numOfCharVarsAndValues);
 
-    cout << "result is : " << result << endl;// Expression Evaluation
+    cout << "result is : " << result << endl;*/// Expression Evaluation
 
 
 
@@ -100,11 +100,18 @@ int main() {
     p.print();*/ // polynomial
 
 
-    /*Queue<int> queue(8);
+    Queue<int> queue(4);
 
     queue.insert(5);
     queue.insert(9);
     queue.insert(98);
-    cout << queue.delete_() << endl ;*/
+    cout << queue.delete_() << endl ;
+    queue.insert(3);
+    queue.insert(8);
+    cout << queue.delete_() << endl ;
+    cout << queue.delete_() << endl ;
+    cout << queue.delete_() << endl ;
+    cout << queue.delete_() << endl ;
+    cout << queue.delete_() << endl ;
     return 0;
 }

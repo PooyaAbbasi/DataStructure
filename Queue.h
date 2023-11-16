@@ -20,6 +20,7 @@ public:
 
     ~Queue() {
         delete[] arr;
+        last = front = 0;
     }
 
     bool isFull() {
@@ -34,14 +35,19 @@ public:
         if (!isFull()) {
             arr[last] = value;
             last = (last + 1) % max_size;
+        } else {
+            cout << " \n the queue is full ! '" << value << "' didn't inserted! \n";
         }
     }
 
     T delete_() {
         if (!isEmpty()) {
-            return arr[front++];
+            T x = arr[front];
+            front = (front+1) % max_size;
+            return x;
         } else {
-            // Handle the error case when the queue is empty
+            cout << "queue is empty ! \n";
+            return NULL;
         }
     }
 };
