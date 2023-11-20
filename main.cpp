@@ -5,9 +5,35 @@
 #include "Queue.h"
 #include "Polynomial.h"
 #include "LinkList.h"
+#include <vector>
 using namespace std;
 
-
+int recursive_determinant(std::vector<std::vector<int>>& matrix) {
+    int len_matrix = (int) matrix.size();
+    if (len_matrix <= 2) {
+        return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]);
+    } else {
+        int determinant = 0;
+        for (int k = 0; k < len_matrix; ++k) {
+            std::vector<std::vector<int>> sub_matrix;
+            for (int i = 1; i < len_matrix; ++i) {
+                std::vector<int> row;
+                for (int j = 0; j < len_matrix; ++j) {
+                    if (k != j) {
+                        row.push_back(matrix[i][j]);
+                    }
+                }
+                sub_matrix.push_back(row);
+            }
+            if (k % 2 == 1) {
+                determinant -= (matrix[0][k] * recursive_determinant(sub_matrix));
+            } else {
+                determinant += (matrix[0][k] * recursive_determinant(sub_matrix));
+            }
+        }
+        return determinant;
+    }
+}
 
 int main() {
     /*int l1[size_l1] = {100, 23, 20, 15, 12, 5};
@@ -54,7 +80,6 @@ int main() {
         cout << *(output + i) << ' ';
     }*/ // sort_combined_two_array
 
-
     /*string exp = "((((22-k)^t)+(80/t))*2)";
     int size_exp = (int) exp.length();
 
@@ -87,20 +112,20 @@ int main() {
 
 
 
-    Polynomial p= Polynomial::getFromConsole();
-    /*p.terms[0].coeff = 1;
+/*    Polynomial p= Polynomial::getFromConsole();
+    *//*p.terms[0].coeff = 1;
     p.terms[0].ex = 2;
     p.terms[1].coeff = 3;
     p.terms[1].ex = 4;
     p.terms[2].coeff = 5;
-    p.terms[2].ex = 6;*/
+    p.terms[2].ex = 6;*//*
 
     Polynomial p3= Polynomial::getFromConsole();
-    /*p3.terms[0].coeff = 7;
+    *//*p3.terms[0].coeff = 7;
     p3.terms[0].ex = 1;
     p3.terms[1].coeff = -3;
     p3.terms[1].ex = 4;
-*/
+*//*
 
     p.print();
     p3.print();
@@ -108,7 +133,7 @@ int main() {
     p.add(p3);
     p.print();
     p.multiply(p3);
-    p.print(); // polynomial
+    p.print();*/ // polynomial
 
 
     /*Queue<int> queue(4);
@@ -154,5 +179,16 @@ int main() {
 
     int_list.print();
 */ // LinkedList
+
+
+/*vector<vector<int>> matrix = {
+    {1, 1, 1, 0},
+    {1, 2, 1, 3},
+    {2, 2, 3, 0},
+    {2, 3, 0, 0}
+    };
+
+cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+
     return 0;
 }
