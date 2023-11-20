@@ -30,7 +30,7 @@ private:
 
     int len;
     int firstEmptyTermIndex; // to remain the first term with coefficient 0, and exponent 0;
-    Term* terms;
+
 
     void setFirstEmptyTermPosition(){
         /**
@@ -43,6 +43,17 @@ private:
                 break;
             }
         }
+    }
+
+    void clearTerms(){
+        this->setFirstEmptyTermPosition();
+        this->len = this->firstEmptyTermIndex;
+        Term* clear_terms = new Term[this->firstEmptyTermIndex];
+        for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
+            clear_terms[i] = this->terms[i];
+        }
+        delete[] terms;
+        this->terms = clear_terms;
     }
 
     void static merge(Term* maineTerms, int low, int mid, int high) {
@@ -100,7 +111,7 @@ private:
     }
 
 public:
-
+    Term* terms;
     Polynomial(Term *terms, int length){
         /**
          * create array of terms with length */
@@ -115,7 +126,7 @@ public:
             this->terms[i] = terms[i];
         }
         this->sort();
-        this->setFirstEmptyTermPosition();
+        this->clearTerms();
     }
 
     Polynomial(int len){
@@ -139,36 +150,52 @@ public:
         int new_needed_len = (this->len + toAdd_pol.len);
 
         Term* result_pol = createArrayOfEmptyTermsWith(new_needed_len);
-        for (int i = 0; i < this->firstEmptyTermIndex; ++i) {
-            result_pol[i] = this->terms[i];
-        }
-        delete[] terms;
-        this->terms = result_pol;
-        this->len = new_needed_len;
 
-        int index_of_match_term;
+
         int sumOfCoeffs;
-        for (int i = 0; i < toAdd_pol.firstEmptyTermIndex ; ++i) {
+        int index_this_poly = 0, index_toAdd_poly = 0, index_result_poly = 0;
 
-            Term &to_add_term = toAdd_pol.terms[i];
-            index_of_match_term = this->findTermAccordingToExponential(to_add_term.ex);
+        while (index_this_poly < this->len && index_toAdd_poly < toAdd_pol.len) {
 
-            if (index_of_match_term != -1) {
-                sumOfCoeffs = result_pol[index_of_match_term].coeff + to_add_term.coeff;
-                if ( sumOfCoeffs != 0){
-                    result_pol[index_of_match_term].coeff = sumOfCoeffs;
-                } else {
-                    result_pol[index_of_match_term] = empty_term;
+            Term &term_of_this_poly = this->terms[index_this_poly];
+            Term &term_of_toAdd_poly = toAdd_pol.terms[index_toAdd_poly];
+            Term &term_of_result_poly = result_pol[index_result_poly];
+
+            if (term_of_this_poly.ex == term_of_toAdd_poly.ex) {
+                if ((sumOfCoeffs = term_of_this_poly.coeff + term_of_toAdd_poly.coeff) != 0) {
+                    term_of_result_poly.ex = term_of_this_poly.ex;
+                    term_of_result_poly.coeff = sumOfCoeffs;
+                    index_result_poly++;
                 }
-
+                index_toAdd_poly++;
+                index_this_poly++;
+            } else if (term_of_this_poly.ex > term_of_toAdd_poly.ex) {
+                term_of_result_poly = term_of_this_poly;
+                index_result_poly++;
+                index_this_poly++;
             } else {
-                result_pol[this->firstEmptyTermIndex] = to_add_term;
-                this->firstEmptyTermIndex++;
+                term_of_result_poly = term_of_toAdd_poly;
+                index_toAdd_poly++;
+                index_result_poly++;
             }
         }
 
-        this->sort();
-        this->setFirstEmptyTermPosition();
+        while (index_this_poly < this->len) {
+            result_pol[index_result_poly] = this->terms[index_this_poly];
+            index_result_poly++;
+            index_this_poly++;
+        }
+
+        while (index_toAdd_poly < toAdd_pol.len) {
+            result_pol[index_result_poly] = toAdd_pol.terms[index_toAdd_poly];
+            index_result_poly++;
+            index_toAdd_poly++;
+        }
+
+        delete[] terms;
+        this->terms = result_pol;
+        this->len = new_needed_len;
+        this->clearTerms();
     }
 
     void multiply(const Polynomial& toMultiply_pol){
@@ -217,8 +244,7 @@ public:
         this->terms = result_polynomial;
         this->len = new_needed_len;
         this->sort();
-        this->setFirstEmptyTermPosition();
-
+        this->clearTerms();
     }
 
     int findTermAccordingToExponential(int exponent){

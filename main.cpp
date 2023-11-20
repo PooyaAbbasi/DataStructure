@@ -4,6 +4,7 @@
 #include "ExpressionEvaluator.h"
 #include "Queue.h"
 #include "Polynomial.h"
+#include "LinkList.h"
 using namespace std;
 
 
@@ -86,15 +87,25 @@ int main() {
 
 
 
-    Polynomial p = Polynomial::getFromConsole();
+    Polynomial p= Polynomial::getFromConsole();
+    /*p.terms[0].coeff = 1;
+    p.terms[0].ex = 2;
+    p.terms[1].coeff = 3;
+    p.terms[1].ex = 4;
+    p.terms[2].coeff = 5;
+    p.terms[2].ex = 6;*/
 
-    Polynomial p3 = Polynomial::getFromConsole();
+    Polynomial p3= Polynomial::getFromConsole();
+    /*p3.terms[0].coeff = 7;
+    p3.terms[0].ex = 1;
+    p3.terms[1].coeff = -3;
+    p3.terms[1].ex = 4;
+*/
 
     p.print();
     p3.print();
     p.calculate(3);
-//    p.add(p3);
-//    p.multiply(p3);
+    p.add(p3);
     p.print();
     p.multiply(p3);
     p.print(); // polynomial
@@ -114,5 +125,34 @@ int main() {
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;*/// Queue execution
 
+/*
+    LinkList<int> int_list;
+
+    cout << int_list.isEmpty() << endl;
+
+    int_list.pushFront(5);
+    int_list.pushFront(8);
+    int_list.pushFront(9);
+    int_list.pushFront(10);
+
+    int_list.insertAt(2, 60);
+
+    cout << int_list.end()->value() << endl;
+
+//    cout << int_list.find(5) << endl;
+//    cout << int_list.find(20) << endl;
+
+    cout << int_list.getNodeAt(2)->value() << endl;
+    cout << int_list.getNodeAt(3)->value() << endl;
+
+    int_list.print();
+
+    int_list.pushEnd(20);
+
+    cout << int_list.popFront() << endl;
+    cout << int_list.popFront() << endl;
+
+    int_list.print();
+*/ // LinkedList
     return 0;
 }
