@@ -11,4 +11,6 @@ add_executable(untitled3 main.cpp
         recursion.cpp
         Queue.h
         Polynomial.h
+        LinkList.h
+        Node.h
 )
