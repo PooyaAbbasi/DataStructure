@@ -11,9 +11,24 @@
 template <class T>
 class LinkList{
 private:
+
     Node<T> *list_head;
 
+    Node<T> *getNodeAt(int index) {
+        Node<T> *ptr = begin();
+        while (index > 0) {
+            ptr = ptr->nextNode();
+            if (ptr == nullptr) {
+                std::cout << "index is out of bounds! \n";
+                return nullptr;
+            }
+            index--;
+        }
+        return ptr;
+    }
+
 public:
+
     LinkList(Node<T> *list_head = nullptr){
 
         this->list_head = list_head;
@@ -100,19 +115,9 @@ public:
         return len;
     }
 
-    Node<T> *getNodeAt(int index) {
-        Node<T> *ptr = begin();
-        while (index > 0) {
-            ptr = ptr->nextNode();
-            if (ptr == nullptr) {
-                std::cout << "index is out of bounds! \n";
-                return nullptr;
-            }
-            index--;
-        }
-        return ptr;
+    T getAt(int index){
+        return this->getNodeAt(index)->value();
     }
-
 
 
     void insertAt(int index, T value){

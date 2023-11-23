@@ -13,4 +13,6 @@ add_executable(untitled3 main.cpp
         Polynomial.h
         LinkList.h
         Node.h
+        Tree.h
+        TreeNode.h
 )

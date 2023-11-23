@@ -6,6 +6,7 @@
 #include "Polynomial.h"
 #include "LinkList.h"
 #include <vector>
+#include "Tree.h"
 using namespace std;
 
 int recursive_determinant(std::vector<std::vector<int>>& matrix) {
@@ -110,8 +111,6 @@ int main() {
 
     cout << "result is : " << result << endl;*/// Expression Evaluation
 
-
-
 /*
     Polynomial p= Polynomial::getFromConsole();
 
@@ -125,7 +124,6 @@ int main() {
     p.print();
     p.multiply(p3);
     p.print(); */ // polynomial
-
 
 
     /*Queue<int> queue(4);
@@ -142,7 +140,7 @@ int main() {
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;*/// Queue execution
 
-
+/*
     LinkList<int> int_list;
 
     int_list.pushFront(32);
@@ -165,7 +163,31 @@ int main() {
     cout << " after erase at 3";
     int_list.print();
 
- // LinkedList
+ */// LinkedList
+
+
+    Tree<int> tree(1);
+
+    tree.root->pushChildLeft(2);
+    tree.root->pushChildRight(3);
+
+    for (int i = 0; i < tree.root->getChildren().length(); ++i) {
+        tree.root->getChildren().getAt(i)->pushChildLeft(4);
+        tree.root->getChildren().getAt(i)->pushChildLeft(5);
+    }
+
+    TreeNode<int> *treeNode0 = tree.root->getChildren().getAt(0);
+    cout << "parent of treeNode = 2 : " << treeNode0->getParent()->getValue() << endl;
+
+    for (int i = 0; i < treeNode0->getChildren().length(); ++i) {
+        treeNode0->getChildren().getAt(i)->pushChildLeft(7);
+        treeNode0->getChildren().getAt(i)->pushChildLeft(8);
+    }
+
+    tree.print();
+    cout << " tree size :" << tree.size() << endl;
+    cout << " tree height :" << tree.height() << endl;
+
 
 
 /*vector<vector<int>> matrix = {
