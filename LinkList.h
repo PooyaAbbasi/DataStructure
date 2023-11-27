@@ -101,6 +101,7 @@ public:
         Node<T>* end_ptr = end();
         T value = end_ptr->value();
         end()->preNode()->setNextNode(nullptr);
+
         delete end_ptr;
         return value;
     }

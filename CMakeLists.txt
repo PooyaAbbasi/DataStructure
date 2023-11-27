@@ -15,4 +15,7 @@ add_executable(untitled3 main.cpp
         Node.h
         Tree.h
         TreeNode.h
+        BinaryNode.h
+        BinaryTree.h
+        treeTools.h
 )

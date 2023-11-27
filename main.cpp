@@ -7,6 +7,8 @@
 #include "LinkList.h"
 #include <vector>
 #include "Tree.h"
+#include "BinaryTree.h"
+#include "treeTools.h"
 using namespace std;
 
 int recursive_determinant(std::vector<std::vector<int>>& matrix) {
@@ -172,21 +174,47 @@ int main() {
     tree.root->pushChildRight(3);
 
     for (int i = 0; i < tree.root->getChildren().length(); ++i) {
-        tree.root->getChildren().getAt(i)->pushChildLeft(4);
-        tree.root->getChildren().getAt(i)->pushChildLeft(5);
+        tree.root->getChildren().getAt(i)->pushChildLeft(22);
+        tree.root->getChildren().getAt(i)->pushChildLeft(33);
+        tree.root->getChildren().getAt(i)->pushChildLeft(44);
     }
 
     TreeNode<int> *treeNode0 = tree.root->getChildren().getAt(0);
     cout << "parent of treeNode = 2 : " << treeNode0->getParent()->getValue() << endl;
+    cout << "next sibling of treeNode = 2 : " << treeNode0->nextSibling()->getValue() << endl;
 
     for (int i = 0; i < treeNode0->getChildren().length(); ++i) {
         treeNode0->getChildren().getAt(i)->pushChildLeft(7);
         treeNode0->getChildren().getAt(i)->pushChildLeft(8);
+        treeNode0->getChildren().getAt(i)->pushChildLeft(9);
     }
 
     tree.print();
     cout << " tree size :" << tree.size() << endl;
     cout << " tree height :" << tree.height() << endl;
+
+    BinaryTree<int> binaryTree(1);
+
+    binaryTree.root->setLeftChild(2);
+    binaryTree.root->setRightChild(3);
+
+    auto right_child = binaryTree.root->getRightChild();
+    auto left_child = binaryTree.root->getLeftChild();
+
+    right_child->setRightChild(31);
+    right_child->setLeftChild(32);
+    cout << "\n\n binary tree :" << endl;
+    cout << " size of binary tree : " << binaryTree.size() << endl;
+    cout << " height of binary tree : " << binaryTree.height() << endl;
+
+    binaryTree.print();
+
+    cout << " the parent of 31: " << right_child->getRightChild()->parent->data << endl;
+
+    BinaryTree<int> remade_binary_tree = remakeBinaryTreeFromSimple(tree);
+
+    cout << "\n\n remade binary tree :" << endl;
+    remade_binary_tree.print();
 
 
 
@@ -197,7 +225,7 @@ int main() {
     {2, 3, 0, 0}
     };
 
-cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+//cout << recursive_determinant(matrix);*/ // Test recursive determinant;
 
     return 0;
 }

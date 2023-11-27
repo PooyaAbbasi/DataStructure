@@ -20,6 +20,12 @@ public:
         this->value = value;
     }
 
+    ~TreeNode(){
+        for (auto it = this->children.begin() ; it != nullptr ; it = it->nextNode()) {
+            delete it;
+        }
+    };
+
     TreeNode<T>* popLeftChild(){
         return children.popFront();
     }
@@ -29,6 +35,7 @@ public:
     }
 
     void setChildren(LinkList<TreeNode<T> *> list_of_children){
+        delete this->children;
         this->children = list_of_children;
     }
 
@@ -52,12 +59,25 @@ public:
         return children;
     }
 
-    void setParent(TreeNode<T> *new_parent){
-        this->parent = new_parent;
-    }
 
     TreeNode<T> *getParent() const {
         return parent;
+    }
+
+    TreeNode<T> *popNextSibling(){
+        if (!this->parent->children.isEmpty()) {
+            return this->parent->children.popFront();
+        } else {
+            return nullptr;
+        }
+    }
+
+    TreeNode<T> *nextSibling(){
+        if (this->parent == nullptr) return nullptr;
+        LinkList<TreeNode<T> *> sibling = this->parent->getChildren();
+        int index_in_sibling = sibling.find(this);
+        if (index_in_sibling == -1 || index_in_sibling + 1 == sibling.length()) return nullptr;
+        return sibling.getAt(index_in_sibling + 1);
     }
 
     void setValue(T new_value){

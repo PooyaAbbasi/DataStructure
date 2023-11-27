@@ -18,6 +18,12 @@ public:
         this->pre = before;
     }
 
+    ~Node(){
+        delete this->data;
+        this->next = nullptr;
+        this->pre = nullptr;
+    }
+
     Node* nextNode() const{
         return this->next;
     }
