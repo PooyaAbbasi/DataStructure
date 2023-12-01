@@ -9,6 +9,7 @@
 #include "Tree.h"
 #include "BinaryTree.h"
 #include "treeTools.h"
+#include "traverseTrees.h"
 using namespace std;
 
 int recursive_determinant(std::vector<std::vector<int>>& matrix) {
@@ -168,30 +169,30 @@ int main() {
  */// LinkedList
 
 
-    Tree<int> tree(1);
+    Tree<char> tree('A');
 
-    tree.root->pushChildLeft(2);
-    tree.root->pushChildRight(3);
+    tree.root->pushChildLeft('b');
+    tree.root->pushChildRight('c');
 
     for (int i = 0; i < tree.root->getChildren().length(); ++i) {
-        tree.root->getChildren().getAt(i)->pushChildLeft(22);
-        tree.root->getChildren().getAt(i)->pushChildLeft(33);
-        tree.root->getChildren().getAt(i)->pushChildLeft(44);
+        tree.root->getChildren().getAt(i)->pushChildLeft('d');
+        tree.root->getChildren().getAt(i)->pushChildLeft('e');
+        tree.root->getChildren().getAt(i)->pushChildLeft('f');
     }
 
-    TreeNode<int> *treeNode0 = tree.root->getChildren().getAt(0);
-    cout << "parent of treeNode = 2 : " << treeNode0->getParent()->getValue() << endl;
-    cout << "next sibling of treeNode = 2 : " << treeNode0->nextSibling()->getValue() << endl;
+    TreeNode<char> *treeNode0 = tree.root->getChildren().getAt(0);
+    //cout << "parent of treeNode = b : " << treeNode0->getParent()->getValue() << endl;
+    //cout << "next sibling of treeNode = b : " << treeNode0->nextSibling()->getValue() << endl;
 
     for (int i = 0; i < treeNode0->getChildren().length(); ++i) {
-        treeNode0->getChildren().getAt(i)->pushChildLeft(7);
-        treeNode0->getChildren().getAt(i)->pushChildLeft(8);
-        treeNode0->getChildren().getAt(i)->pushChildLeft(9);
+        treeNode0->getChildren().getAt(i)->pushChildLeft('g');
+        treeNode0->getChildren().getAt(i)->pushChildLeft('h');
+        treeNode0->getChildren().getAt(i)->pushChildLeft('i');
     }
 
     tree.print();
-    cout << " tree size :" << tree.size() << endl;
-    cout << " tree height :" << tree.height() << endl;
+    //cout << " tree size :" << tree.size() << endl;
+    //cout << " tree height :" << tree.height() << endl;
 
     BinaryTree<int> binaryTree(1);
 
@@ -203,19 +204,38 @@ int main() {
 
     right_child->setRightChild(31);
     right_child->setLeftChild(32);
-    cout << "\n\n binary tree :" << endl;
-    cout << " size of binary tree : " << binaryTree.size() << endl;
-    cout << " height of binary tree : " << binaryTree.height() << endl;
+    //cout << "\n\n binary tree :" << endl;
+    //cout << " size of binary tree : " << binaryTree.size() << endl;
+    //cout << " height of binary tree : " << binaryTree.height() << endl;
 
+    cout << " \n binary tree: \n";
     binaryTree.print();
 
-    cout << " the parent of 31: " << right_child->getRightChild()->parent->data << endl;
+    //cout << " the parent of 31: " << right_child->getRightChild()->parent->data << endl;
 
-    BinaryTree<int> remade_binary_tree = remakeBinaryTreeFromSimple(tree);
+    BinaryTree<char> remade_binary_tree = remakeBinaryTreeFromSimple(tree);
 
-    cout << "\n\n remade binary tree :" << endl;
-    remade_binary_tree.print();
+    //cout << "\n\n remade binary tree :" << endl;
+    //remade_binary_tree.print();
 
+
+    char *bfs_of_tree = getBFSof(tree, 3);
+    cout << "\n BFS of tree :" << bfs_of_tree << endl;
+
+    char *dfs_of_tree = getDFSof(tree, 3);
+    cout << "\n DFS of tree :" << dfs_of_tree << endl;
+
+
+    cout << " \n VLR of binary tree: ";
+    int *vlr =binaryTree.VLR();
+    cout << "\n array of vlr :";
+    for (int i = 0; i < binaryTree.size(); ++i) {
+        cout << vlr[i] << "-";
+    }
+    cout << " \n LRV of binary tree: ";
+    binaryTree.LRV();
+    cout << " \n VLR of binary tree: ";
+    binaryTree.VLR();
 
 
 /*vector<vector<int>> matrix = {
@@ -225,7 +245,7 @@ int main() {
     {2, 3, 0, 0}
     };
 
-//cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+////cout << recursive_determinant(matrix);*/ // Test recursive determinant;
 
     return 0;
 }

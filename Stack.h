@@ -25,7 +25,7 @@ public:
         if (!isEmpty()) {
             return array[top--];
         } else {
-            return '\0';
+            return NULL;
         }
     }
 

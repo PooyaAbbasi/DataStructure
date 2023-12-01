@@ -88,6 +88,69 @@ public:
         printRecursive(this->root);
     }
 
+    void getLVRrecursive(BinaryNode<T> *node, T* &lvr){
+        if (node->getLeftChild() != nullptr) {
+            getLVRrecursive(node->getLeftChild(), lvr);
+        }
+
+        cout << node->data << "-";
+        *lvr = node->data;
+        lvr ++;
+
+        if (node->getRightChild() != nullptr) {
+            getLVRrecursive(node->getRightChild(), lvr);
+        }
+    }
+
+    T * LVR(){
+        T *lvr = new T[this->size()];
+        T *pointer_of_lvr = lvr;
+        getLVRrecursive(this->root, pointer_of_lvr);
+        return lvr;
+    }
+
+    void getVLRrecursive(BinaryNode<T> *node, T* &vlr){
+        cout << node->data << "-";
+        *vlr = node->data;
+        vlr ++;
+
+        if (node->getLeftChild() != nullptr) {
+            getVLRrecursive(node->getLeftChild(), vlr);
+        }
+
+        if (node->getRightChild() != nullptr) {
+            getVLRrecursive(node->getRightChild(), vlr);
+        }
+    }
+
+    T * VLR(){
+        T *vlr = new T[this->size()];
+        T *pointer_of_vlr = vlr;
+        getVLRrecursive(this->root, pointer_of_vlr);
+        return vlr;
+    }
+
+    void getLRVrecursive(BinaryNode<T> *node, T* &lvr){
+        if (node->getLeftChild() != nullptr) {
+            getLRVrecursive(node->getLeftChild(), lvr);
+        }
+
+        if (node->getRightChild() != nullptr) {
+            getLRVrecursive(node->getRightChild(), lvr);
+        }
+
+        cout << node->data << "-";
+        *lvr = node->data;
+        lvr ++;
+    }
+
+    T * LRV(){
+        T *lrv = new T[this->size()];
+        T *pointer_of_lrv = lrv;
+        getLRVrecursive(this->root, pointer_of_lrv);
+        return lrv;
+    }
+
 };
 
 #endif //UNTITLED3_BINARYTREE_H
