@@ -143,7 +143,6 @@ int main() {
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;*/// Queue execution
 
-/*
     LinkList<int> int_list;
 
     int_list.pushFront(32);
@@ -152,7 +151,7 @@ int main() {
     int_list.pushFront(78);
     int_list.pushFront(78);
     int_list.pushFront(78);
-
+    int_list.print();
     int_list.eraseNodesWithValue(78);
     int_list.print();
     int_list.eraseNodeAt(1);
@@ -165,8 +164,15 @@ int main() {
     int_list.eraseNodeAt(3);
     cout << " after erase at 3";
     int_list.print();
-
- */// LinkedList
+    int_list.pushFront(58);
+    int_list.print();
+    int_list.reverse();
+    cout << " after reverse" ;
+    int_list.print();
+    int_list.clear();
+    int_list.print();
+    cout << sizeof(int_list) << endl;
+ // LinkedList
 
 
     /*Tree<char> tree('A');
@@ -235,12 +241,14 @@ int main() {
     cout << " \n LRV of binary tree: ";
     binaryTree.LRV();
     cout << " \n VLR of binary tree: ";
-    binaryTree.VLR();*/
+    binaryTree.VLR();*/ // trees
 
 
+/*
     char lvr_[11] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '\0'};
     char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
     BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
+*/ // make binary tree of vlr and lvr order;
 
 /*vector<vector<int>> matrix = {
     {1, 1, 1, 0},

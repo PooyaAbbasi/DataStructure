@@ -87,11 +87,7 @@ public:
 
     void pushEnd(T value){
         Node<T> *current_end = this->end();
-        this->end()->setNextNode(new Node<T>(value, nullptr, end()));
-        // the end is changed now
-        if (end() != begin()) {
-            this->end()->setPreNode(current_end);
-        }
+        current_end->setNextNode(new Node<T>(value, nullptr, current_end));
     }
 
     T popEnd(){
@@ -100,7 +96,7 @@ public:
         }
         Node<T>* end_ptr = end();
         T value = end_ptr->value();
-        end()->preNode()->setNextNode(nullptr);
+        end_ptr->preNode()->setNextNode(nullptr);
 
         delete end_ptr;
         return value;
@@ -198,7 +194,7 @@ public:
             }
         }
         if (count_erases == 0) {
-            cout << " No match founded " << endl;
+            std::cout << " No match founded " << endl;
         }
     }
 
@@ -220,6 +216,20 @@ public:
         }
         std::cout<< "}\n";
 
+    }
+
+    void reverse(){
+        Node<T> *ptr;
+        Node<T> *pre_node_buffer;
+        ptr = begin();
+        do {
+            pre_node_buffer = ptr->preNode();
+            ptr->setPreNode(ptr->nextNode());
+            ptr->setNextNode(pre_node_buffer);
+            ptr = ptr->preNode();
+            if (ptr == nullptr) break;
+            this->list_head = ptr;
+        } while (true);
     }
 
     void printReverse(){

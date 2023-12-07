@@ -19,7 +19,6 @@ public:
     }
 
     ~Node(){
-        delete this->data;
         this->next = nullptr;
         this->pre = nullptr;
     }

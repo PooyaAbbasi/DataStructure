@@ -10,6 +10,11 @@
 #include "TreeNode.h"
 #include "LinkList.h"
 
+
+/**
+ * Implementing sibling Tree.
+ * remake a Binary tree from a simple (or general) tree recursively.
+ * */
 template <class T>
 void remakeBinaryTreeFromSimpleTreeRecursive(BinaryNode<T> *binaryRoot, TreeNode<T> *simpleTreeRoot){
 
