@@ -169,7 +169,7 @@ int main() {
  */// LinkedList
 
 
-    Tree<char> tree('A');
+    /*Tree<char> tree('A');
 
     tree.root->pushChildLeft('b');
     tree.root->pushChildRight('c');
@@ -235,8 +235,12 @@ int main() {
     cout << " \n LRV of binary tree: ";
     binaryTree.LRV();
     cout << " \n VLR of binary tree: ";
-    binaryTree.VLR();
+    binaryTree.VLR();*/
 
+
+    char lvr_[11] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '\0'};
+    char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
+    BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
 
 /*vector<vector<int>> matrix = {
     {1, 1, 1, 0},

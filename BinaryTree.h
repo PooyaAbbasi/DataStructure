@@ -151,6 +151,48 @@ public:
         return lrv;
     }
 
+    static BinaryTree<T> makeBinaryTreeOf(T *lvr, T *vlr, int len_of_nodes){
+        BinaryTree<T> result_tree(*vlr);
+
+        if (len_of_nodes == 1) return result_tree;
+
+        int index_of_root_in_lvr = 0;
+        for (; index_of_root_in_lvr < len_of_nodes ; index_of_root_in_lvr++) {
+            if (lvr[index_of_root_in_lvr] == *vlr) break;
+        }
+
+        setChildRecursive(result_tree.root, 0, index_of_root_in_lvr - 1,
+                          lvr, vlr, true);
+
+
+        setChildRecursive(result_tree.root, index_of_root_in_lvr + 1, len_of_nodes,
+                          lvr, vlr, false);
+
+        return result_tree;
+    }
+
+    static void setChildRecursive(BinaryNode<T> *root, int low, int high, T* lvr, T* &vlr, bool is_left){
+        if (*(vlr + 1) == '\0' || low > high) return;
+        char* child = ++vlr;
+        (is_left)? root->setLeftChild(*child) : root->setRightChild(*child);
+
+        if (low == high) {
+            return;
+        } else {
+
+            int index_of_child_in_lvr = low;
+            for (; index_of_child_in_lvr <= high; ++index_of_child_in_lvr) {
+                if (lvr[index_of_child_in_lvr] == *child) break;
+            }
+            BinaryNode<T> * new_root = (is_left)? root->getLeftChild(): root->getRightChild();
+                setChildRecursive(new_root, low, index_of_child_in_lvr -1,
+                                  lvr, vlr, true);
+
+                setChildRecursive(new_root, index_of_child_in_lvr + 1, high,
+                                  lvr, vlr, false);
+        }
+    }
+
 };
 
 #endif //UNTITLED3_BINARYTREE_H
