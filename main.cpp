@@ -10,6 +10,8 @@
 #include "BinaryTree.h"
 #include "treeTools.h"
 #include "traverseTrees.h"
+#include "MinHeapTree.h"
+
 using namespace std;
 
 int recursive_determinant(std::vector<std::vector<int>>& matrix) {
@@ -143,6 +145,7 @@ int main() {
     cout << queue.delete_() << endl ;
     cout << queue.delete_() << endl ;*/// Queue execution
 
+/*
     LinkList<int> int_list;
 
     int_list.pushFront(32);
@@ -172,7 +175,7 @@ int main() {
     int_list.clear();
     int_list.print();
     cout << sizeof(int_list) << endl;
- // LinkedList
+*/ // LinkedList
 
 
     /*Tree<char> tree('A');
@@ -249,6 +252,23 @@ int main() {
     char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
     BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
 */ // make binary tree of vlr and lvr order;
+
+    cout << " \n\n Test min heap tree: \n\n";
+    MinHeapTree<char> heapTree(10);
+    cout << " heap tree is full:" << heapTree.isFull() << endl;
+    heapTree.insert('A', 1);
+//    heapTree.print();
+    heapTree.insert('B', 0);
+//    heapTree.print();
+    heapTree.insert('C', 1);
+//    heapTree.print();
+    heapTree.insert('T', 5);
+    heapTree.print();
+    cout << " pop: " << heapTree.pop() << endl;
+    heapTree.print();
+    cout << " pop: " << heapTree.pop() << endl;
+    heapTree.print();
+
 
 /*vector<vector<int>> matrix = {
     {1, 1, 1, 0},
