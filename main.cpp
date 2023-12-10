@@ -178,54 +178,29 @@ int main() {
 */ // LinkedList
 
 
-    /*Tree<char> tree('A');
+    Tree<char> tree('A');
 
-    tree.root->pushChildLeft('b');
-    tree.root->pushChildRight('c');
-
-    for (int i = 0; i < tree.root->getChildren().length(); ++i) {
-        tree.root->getChildren().getAt(i)->pushChildLeft('d');
-        tree.root->getChildren().getAt(i)->pushChildLeft('e');
-        tree.root->getChildren().getAt(i)->pushChildLeft('f');
-    }
-
-    TreeNode<char> *treeNode0 = tree.root->getChildren().getAt(0);
-    //cout << "parent of treeNode = b : " << treeNode0->getParent()->getValue() << endl;
-    //cout << "next sibling of treeNode = b : " << treeNode0->nextSibling()->getValue() << endl;
-
-    for (int i = 0; i < treeNode0->getChildren().length(); ++i) {
-        treeNode0->getChildren().getAt(i)->pushChildLeft('g');
-        treeNode0->getChildren().getAt(i)->pushChildLeft('h');
-        treeNode0->getChildren().getAt(i)->pushChildLeft('i');
-    }
+    tree.addNodeFromConsole();
 
     tree.print();
-    //cout << " tree size :" << tree.size() << endl;
-    //cout << " tree height :" << tree.height() << endl;
+    cout << " tree size :" << tree.size() << endl;
+    cout << " tree height :" << tree.height() << endl;
 
     BinaryTree<int> binaryTree(1);
+    binaryTree.addNodesFromConsole();
 
-    binaryTree.root->setLeftChild(2);
-    binaryTree.root->setRightChild(3);
-
-    auto right_child = binaryTree.root->getRightChild();
-    auto left_child = binaryTree.root->getLeftChild();
-
-    right_child->setRightChild(31);
-    right_child->setLeftChild(32);
-    //cout << "\n\n binary tree :" << endl;
-    //cout << " size of binary tree : " << binaryTree.size() << endl;
-    //cout << " height of binary tree : " << binaryTree.height() << endl;
+    cout << "\n\n binary tree :" << endl;
+    cout << " size of binary tree : " << binaryTree.size() << endl;
+    cout << " height of binary tree : " << binaryTree.height() << endl;
 
     cout << " \n binary tree: \n";
     binaryTree.print();
 
-    //cout << " the parent of 31: " << right_child->getRightChild()->parent->data << endl;
 
     BinaryTree<char> remade_binary_tree = remakeBinaryTreeFromSimple(tree);
 
-    //cout << "\n\n remade binary tree :" << endl;
-    //remade_binary_tree.print();
+    cout << "\n\n remade binary tree :" << endl;
+    remade_binary_tree.print();
 
 
     char *bfs_of_tree = getBFSof(tree, 3);
@@ -244,15 +219,15 @@ int main() {
     cout << " \n LRV of binary tree: ";
     binaryTree.LRV();
     cout << " \n VLR of binary tree: ";
-    binaryTree.VLR();*/ // trees
+    binaryTree.VLR();
 
 
-/*
     char lvr_[11] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', '\0'};
     char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
     BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
-*/ // make binary tree of vlr and lvr order;
+ // make binary tree of vlr and lvr order;
 
+/*
     cout << " \n\n Test min heap tree: \n\n";
     MinHeapTree<char> heapTree(10);
     cout << " heap tree is full:" << heapTree.isFull() << endl;
@@ -268,6 +243,7 @@ int main() {
     heapTree.print();
     cout << " pop: " << heapTree.pop() << endl;
     heapTree.print();
+*/ // min heap tree
 
 
 /*vector<vector<int>> matrix = {
@@ -277,7 +253,7 @@ int main() {
     {2, 3, 0, 0}
     };
 
-////cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+//cout << recursive_determinant(matrix);*/ // Test recursive determinant;
 
     return 0;
 }

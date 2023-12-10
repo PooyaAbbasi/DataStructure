@@ -193,6 +193,56 @@ public:
         }
     }
 
+    void addNodesFromConsole(){
+        if (this->root == nullptr) {
+            T root_value;
+            cout << "enter root value: ";
+            cin >> root_value;
+            this->root = new BinaryNode<T>(root_value);
+        }
+        int cancel;
+        do {
+            cout << "the tree :\n ";
+            this->print();
+            addNodesFromConsoleRecursive(this->root);
+            cout << " to cancel enter 0 to continue enter 1: \n";
+            cin >> cancel;
+        } while (cancel != 0);
+    }
+
+    void addNodesFromConsoleRecursive(BinaryNode<T> *root){
+
+        bool has_left = root->getLeftChild() != nullptr;
+        bool has_right = root->getRightChild() != nullptr;
+
+        cout << " the root is :" << root->data << endl;
+        cout << ((has_left)? "1. get into left.\n " : "1. add left child. \n" );
+        cout << ((has_right)? "2. get into right \n" : "2. add right child. \n" );
+        int choice;
+        cout << "enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            if (!has_left) {
+                T value;
+                cout << " enter your value : ";
+                cin >> value;
+                root->setLeftChild(value);
+            } else {
+                addNodesFromConsoleRecursive(root->getLeftChild());
+            }
+        } else {
+            if (!has_right) {
+                T value;
+                cout << " enter your value : ";
+                cin >> value;
+                root->setRightChild(value);
+            } else {
+                addNodesFromConsoleRecursive(root->getRightChild());
+            }
+        }
+    }
+
 };
 
 #endif //UNTITLED3_BINARYTREE_H

@@ -14,6 +14,7 @@ private:
     static void print_recursive(TreeNode<T> *node){
 
         if (node->isLeaf()) {
+            cout << node->getValue() << ": leaf! \n";
             return;
         } else {
             cout<< node->getValue() << " : " << " { " ;
@@ -77,6 +78,41 @@ public:
 
     void print(){
         print_recursive(this->root);
+    }
+
+    void addNodeFromConsole() {
+        cout << "\n\nadding node to tree: \n";
+        int cancel;
+        do {
+            this->print();
+            addNodeFromConsoleRecursive(this->root);
+            cout << " do you want to continue? 1 for yes, 0 for cancel: ";
+            cin >> cancel;
+        } while (cancel != 0);
+    }
+
+    void addNodeFromConsoleRecursive(TreeNode<T> *root_node){
+        cout << " the root is :" << root_node->getValue() << endl;
+        cout << "choose your choice :\n";
+
+        int choice;
+        int i;
+        for (i = 0; i < root_node->getChildren().length(); ++i) {
+            cout << i + 1 << ". for get in child: " << root_node->getChildren().getAt(i)->getValue() << endl;
+
+        }
+        cout << i + 1 << ". for add child to end. \n enter your choice: ";
+        cin >> choice;
+
+        if (choice >= 1 && choice <= root_node->getChildren().length()) {
+            addNodeFromConsoleRecursive(root_node->getChildren().getAt(choice - 1));
+        } else if (choice == i + 1) {
+            T value;
+            cout << "enter the value you want to add as child: ";
+            cin >> value;
+            root_node->pushChildRight(value);
+        }
+
     }
 
 };

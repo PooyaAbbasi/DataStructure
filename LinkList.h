@@ -86,6 +86,10 @@ public:
     }
 
     void pushEnd(T value){
+        if (isEmpty()) {
+            this->list_head = new Node<T>(value);
+            return;
+        }
         Node<T> *current_end = this->end();
         current_end->setNextNode(new Node<T>(value, nullptr, current_end));
     }
