@@ -20,4 +20,6 @@ add_executable(untitled3 main.cpp
         treeTools.h
         traverseTrees.h
         MinHeapTree.h
+        BinarySearchTree.h
+        BinarySearchNode.h
 )

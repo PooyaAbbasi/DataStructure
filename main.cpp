@@ -11,6 +11,7 @@
 #include "treeTools.h"
 #include "traverseTrees.h"
 #include "MinHeapTree.h"
+#include "BinarySearchTree.h"
 
 using namespace std;
 
@@ -177,7 +178,7 @@ int main() {
     cout << sizeof(int_list) << endl;
 */ // LinkedList
 
-
+/*
     Tree<char> tree('A');
 
     tree.addNodeFromConsole();
@@ -226,7 +227,7 @@ int main() {
     char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
     BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
  // make binary tree of vlr and lvr order;
-
+*/
 /*
     cout << " \n\n Test min heap tree: \n\n";
     MinHeapTree<char> heapTree(10);
@@ -254,6 +255,29 @@ int main() {
     };
 
 //cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+
+    BinarySearchTree<int> bst(51);
+//    bst.print();
+
+    int arr[13] = {47, 70, 69, 29,
+                   24, 68, 18,19, 11, 16, 67, 92 , 30};
+
+    for (int element: arr) {
+        bst.insert(element);
+    }
+    bst.print();
+    cout << "\nafter deleting 70 and 29\n" << endl;
+    bst.erase(70);
+    bst.erase(29);
+    bst.print();
+
+    cout << "the size of bst: " << bst.size() << endl;
+    cout << "the height of bst: " << bst.height() << endl;
+    cout << " the lvr :" << endl;
+    bst.LVR();
+    cout << endl;
+    cout << bst.back() << endl;
+    cout << bst.front() << endl;
 
     return 0;
 }
