@@ -22,4 +22,5 @@ add_executable(untitled3 main.cpp
         MinHeapTree.h
         BinarySearchTree.h
         BinarySearchNode.h
+        sort.h
 )

@@ -12,6 +12,7 @@
 #include "traverseTrees.h"
 #include "MinHeapTree.h"
 #include "BinarySearchTree.h"
+#include "sort.h"
 
 using namespace std;
 
@@ -255,6 +256,7 @@ int main() {
     };
 
 //cout << recursive_determinant(matrix);*/ // Test recursive determinant;
+/*
 
     BinarySearchTree<int> bst(51);
 //    bst.print();
@@ -278,6 +280,21 @@ int main() {
     cout << endl;
     cout << bst.back() << endl;
     cout << bst.front() << endl;
+*/ // BST threaded
+
+
+    int array[6] = {1, 2, 3, 4, 5,6};
+
+    Sort<int>::quickSort(array, 0, 5);
+
+    for (int element: array) {
+        cout << " " << element;
+    }
+    cout << endl;
+
+
+
+
 
     return 0;
 }
