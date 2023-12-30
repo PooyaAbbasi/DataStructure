@@ -133,7 +133,7 @@ int main() {
     p.print(); */ // polynomial
 
 
-    /*Queue<int> queue(4);
+/*    Queue<int> queue(4);
 
     queue.insert(5);
     queue.insert(9);
@@ -228,7 +228,7 @@ int main() {
     char vlr_[11] = {'G', 'D', 'B', 'A', 'C', 'E', 'F', 'I', 'H', 'J', '\0'};
     BinaryTree<char>::makeBinaryTreeOf(lvr_, vlr_, 10).print();
  // make binary tree of vlr and lvr order;
-*/
+*/ // tree
 /*
     cout << " \n\n Test min heap tree: \n\n";
     MinHeapTree<char> heapTree(10);
@@ -256,7 +256,7 @@ int main() {
     };
 
 //cout << recursive_determinant(matrix);*/ // Test recursive determinant;
-/*
+
 
     BinarySearchTree<int> bst(51);
 //    bst.print();
@@ -271,6 +271,7 @@ int main() {
     cout << "\nafter deleting 70 and 29\n" << endl;
     bst.erase(70);
     bst.erase(29);
+    bst.erase(67);
     bst.print();
 
     cout << "the size of bst: " << bst.size() << endl;
@@ -280,9 +281,10 @@ int main() {
     cout << endl;
     cout << bst.back() << endl;
     cout << bst.front() << endl;
-*/ // BST threaded
+ // BST threaded
 
 
+/*
     int array[6] = {1, 2, 3, 4, 5,6};
 
     Sort<int>::quickSort(array, 0, 5);
@@ -291,9 +293,7 @@ int main() {
         cout << " " << element;
     }
     cout << endl;
-
-
-
+*/ // Sort algorithms
 
 
     return 0;

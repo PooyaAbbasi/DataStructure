@@ -67,9 +67,17 @@ public:
         this->left = new BinarySearchNode<T>(data, this);
     }
 
+    void setLeftChild(BinarySearchNode<T> *node){
+        this->left = node;
+    }
+
     void setRightChild(T data){
         this->isRightChild = true;
         this->right = new BinarySearchNode<T>(data, this);
+    }
+
+    void setRightChild(BinarySearchNode<T> *node){
+        this->right = node;
     }
 
     BinarySearchNode *getLeftChild() const{

@@ -10,6 +10,13 @@
 
 template<class T>
 class BinarySearchTree {
+    /**
+     * The `BinarySearchTree` class is a template class that implements a binary search tree data structure.
+     * Each node in the tree contains a data element of a generic type `T`.
+     * This is a threaded tree which use the empty (nullptr) children as threads.
+     * Right thread points to the next node of that in in-order travers,
+     * and the left points to previous node in in-order travers.
+     */
 private:
     BinarySearchNode<T> *root;
 
@@ -19,10 +26,16 @@ public:
         this->root = new BinarySearchNode<T>(root_data);
     }
 
+    /**
+     * Default constructor */
     BinarySearchTree() {
         this->root = nullptr;
     }
 
+
+    /**
+     *  This is a helper method that recursively calculates the height of the subtree rooted at `node`.
+     *  */
     int getHeightRecursive(BinarySearchNode<T> *node) {
         if (node->isLeaf()) {
             return 0;
@@ -45,6 +58,9 @@ public:
         return getHeightRecursive(this->root);
     }
 
+    /**
+     *  This is a helper method that recursively calculates the number of nodes in the subtree rooted at `node`.
+     *  */
     int getSizeRecursive(BinarySearchNode<T> *node) {
         if (node->isLeaf()) {
             return 1;
@@ -63,6 +79,9 @@ public:
         return getSizeRecursive(this->root);
     }
 
+    /**
+     * This method returns an array containing the elements of the binary search tree in in-order sequence.
+     * */
     T *LVR() {
         T *lvr = new T[this->size()];
         T *pointer_of_lvr = lvr;
@@ -70,6 +89,9 @@ public:
         return lvr;
     }
 
+    /** This is a helper method that recursively populates the `lvr` array with the elements of the subtree
+     * rooted at `node` in in-order sequence.
+     * */
     void getLVRrecursive(BinarySearchNode<T> *node, T *&lvr) {
 
         if (node->hasLeftChild()) {
@@ -89,6 +111,11 @@ public:
         printRecursive(this->root);
     }
 
+    /**
+     * This method prints the elements of the binary search tree
+     * recursively in depth first order
+     * and their left and right children (or threads).
+     * */
     void printRecursive(BinarySearchNode<T> *node) {
         if (node == nullptr) return;
         if (node->isLeaf()) {
@@ -119,6 +146,11 @@ public:
         }
     }
 
+    /**
+     * This method inserts a new node with the given data into the binary search tree.
+     * If the tree is empty, it creates a new root node.
+     * Otherwise, it calls the `insertRecursive` method to find the correct location for the new node.
+     * */
     void insert(T data) {
         if (this->root == nullptr) {
             this->root = new BinarySearchNode<T>(data);
@@ -127,6 +159,10 @@ public:
         }
     }
 
+    /**
+     * A helper method that recursively finds the correct location for a new node in the subtree rooted at `root`
+     * and inserts the new node at that location. It also sets the right and left threads for the new node.
+     * */
     void insertRecursive(T data, BinarySearchNode<T> *root) {
         if (data < root->data) {
             if (root->hasLeftChild()) {
@@ -147,10 +183,16 @@ public:
         }
     }
 
+    /**
+     *  This method returns the smallest element in the binary search tree.*/
     T front(){
         return frontOf(this->root)->data;
     }
 
+    /**
+     * This is a helper method that finds the most left node in tree, which is the smallest element
+     * in the subtree rooted at `node`.
+     * */
     BinarySearchNode<T> *frontOf(BinarySearchNode<T> *node) {
         while (node->hasLeftChild()) {
             node = node->getLeftChild();
@@ -158,10 +200,17 @@ public:
         return node;
     }
 
+    /**
+     *  This method returns the largest element in the binary search tree.
+     *  */
     T back(){
         return this->backOf(this->root)->data;
     }
 
+    /**
+     * This is a helper method that finds the rightest node, which is the largest element
+     * in the subtree rooted at `node`.
+     * */
     BinarySearchNode<T> *backOf(BinarySearchNode<T> *node) {
         while (node->hasRightChild()) {
             node = node->getRightChild();
@@ -169,6 +218,10 @@ public:
         return node;
     }
 
+    /**
+     *  This method sets the right thread for a node. If the node does not have a right child,
+     *  it finds the in-order successor of the node and sets it as the right thread.
+     *  */
     void setRightThread(BinarySearchNode<T> *node) {
         if (!node->hasRightChild()){
             BinarySearchNode<T> *right_thread = nullptr;
@@ -176,9 +229,24 @@ public:
         }
     }
 
+    /**
+     * This is a helper method that finds the in-order successor of a node with `target_data`
+     * in the subtree rooted at `root_node`.
+     * */
     BinarySearchNode<T> *findRightThread(T target_data,
                                          BinarySearchNode<T> *root_node,
                                          BinarySearchNode<T> *&right_thread) {
+        /**
+         * The algorithm of finding right (or left) thread is a bit complicated.
+         * Next element of this node in in-order travers is the minimum of greater elements among all tree nodes,
+         * so in the binary search tree the last node which we go to its left child to get to the target node,
+         * is right thread. Because target node is smaller than that
+         * and that is the smallest node among nodes are greater than target node.
+         * So we have to travers from root of tree to find the target and each time we get to the left child,
+         * save the node in 'right_thread' and recall the function.
+         * It's done until find the target node we want to find right thread for it.
+         * */
+
         if (target_data == root_node->data) {
             return right_thread;
         } else if (target_data > root_node->data) {
@@ -189,6 +257,11 @@ public:
         }
     }
 
+    /**
+     *  This method sets the left thread for a node.
+     *  If the node does not have a left child,
+     *  it finds the in-order predecessor of the node and sets it as the left thread.
+     *  */
     void setLeftThread(BinarySearchNode<T> *node) {
         if (!node->hasLeftChild()) {
             BinarySearchNode<T> *left_thread = nullptr;
@@ -196,6 +269,12 @@ public:
         }
     }
 
+    /**
+     * A helper method that finds the in-order predecessor of a node
+     * with `target_data` in the subtree rooted at `root_node`.
+     * Algorithm if finding left thread is like right thread, only vice versa;
+     * explained in inner docs of 'fineRightThread()' method.
+     * */
     BinarySearchNode<T> *findLeftThread(T target_data,
                                         BinarySearchNode<T> *root_node,
                                         BinarySearchNode<T> *&left_thread) {
@@ -209,6 +288,10 @@ public:
         }
     }
 
+    /**
+     *  This method finds a node with `data` in the subtree rooted at `root_node`.
+     *  If such a node exists, it returns the node. Otherwise, it returns `nullptr`.
+     *  */
     BinarySearchNode<T> *findNode(T data, BinarySearchNode<T> *root_node) {
         if (data == root_node->data) {
             return root_node;
@@ -221,10 +304,24 @@ public:
         }
     }
 
+    /**
+     * This method checks whether a node with `data` exists in the binary search tree.
+     * It returns `true` if such a node exists and `false` otherwise.
+       */
     bool find(T data) {
         return (findNode(data, this->root) != nullptr);
     }
 
+
+    /**
+     * This method removes the node with the given data from the binary search tree.
+     * It first finds the node to delete. If such a node does not exist, it prints a message and returns.
+     * If the node is a leaf node, it removes the node and updates the parent's child pointer and left thread.
+     * If the node has a single child, it replaces the node with its child.
+     * If the node has two children, it finds the node with the largest element in the left subtree
+     * (i.e., the in-order predecessor), removes that node,
+     * and replaces the data of the node to delete with the data of the in-order predecessor.
+     * */
     void erase(T data) {
         BinarySearchNode<T> *node_to_delete = this->findNode(data, this->root);
 
@@ -236,16 +333,19 @@ public:
             BinarySearchNode<T> *parent = node_to_delete->getParent();
             if (parent->getRightChild() == node_to_delete) {
                 parent->setIsRightChild(false);
+                setRightThread(parent);
             } else {
                 parent->setIsLeftChild(false);
+                setLeftThread(parent);
             }
             delete node_to_delete;
-            this->setLeftThread(parent);
 
         } else if (node_to_delete->hasSingleChild()) { // single child
-            *node_to_delete = *((node_to_delete->hasLeftChild()) ?
-                             node_to_delete->getLeftChild() :
-                             node_to_delete->getRightChild());
+            // assign the value of node_to_delete ptr with one of right or left children
+            BinarySearchNode<T> *only_child_of_node_to_delete = ((node_to_delete->hasLeftChild()) ?
+                                                                 node_to_delete->getLeftChild() :
+                                                                 node_to_delete->getRightChild());
+            replaceNodes(node_to_delete, only_child_of_node_to_delete);
 
         } else { // full node
             BinarySearchNode<T> *back_of_left = this->backOf(node_to_delete->getLeftChild());
@@ -253,6 +353,31 @@ public:
             erase(back_of_left->data);
             node_to_delete->data = data_of_backLeft;
         }
+    }
+
+    /**
+     * replace a with b */
+    void replaceNodes(BinarySearchNode<T> *a, BinarySearchNode<T> *b){
+        b->setParent(a->getParent());
+
+        // determine 'a' is left child of its parent or right child
+        if (a->getParent()->getLeftChild() == a) {
+            a->getParent()->setLeftChild(b);
+        }
+        if (a->getParent()->getRightChild() == a) {
+            a->getParent()->setRightChild(b);
+        }
+
+        // check if the right or left thread of 'b' is 'a' set its thread again
+        if (b->getRightThread() == a) {
+            setRightThread(b);
+        }
+        if (b->getLeftThread() == a) {
+            setLeftThread(b);
+        }
+
+        // delete 'a' at the end
+        delete a;
     }
 
 
