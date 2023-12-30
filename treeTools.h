@@ -2,8 +2,8 @@
 // Created by abasiy on ۲۶/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_TREETOOLS_H
-#define UNTITLED3_TREETOOLS_H
+#ifndef DATASTRUCTURE_TREETOOLS_H
+#define DATASTRUCTURE_TREETOOLS_H
 #include "BinaryTree.h"
 #include "Tree.h"
 #include "BinaryNode.h"
@@ -39,4 +39,4 @@ BinaryTree<T> remakeBinaryTreeFromSimple(Tree<T> simple_tree){
     return binary_tree;
 }
 
-#endif //UNTITLED3_TREETOOLS_H
+#endif //DATASTRUCTURE_TREETOOLS_H

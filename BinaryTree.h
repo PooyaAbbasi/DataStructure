@@ -2,8 +2,8 @@
 // Created by abasiy on ۲۶/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_BINARYTREE_H
-#define UNTITLED3_BINARYTREE_H
+#ifndef DATASTRUCTURE_BINARYTREE_H
+#define DATASTRUCTURE_BINARYTREE_H
 #include "BinaryNode.h"
 
 template <class T>
@@ -245,4 +245,4 @@ public:
 
 };
 
-#endif //UNTITLED3_BINARYTREE_H
+#endif //DATASTRUCTURE_BINARYTREE_H

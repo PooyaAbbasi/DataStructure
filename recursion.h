@@ -2,8 +2,8 @@
 // Created by abasiy on ۰۶/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_RECURSION_H
-#define UNTITLED3_RECURSION_H
+#ifndef DATASTRUCTURE_RECURSION_H
+#define DATASTRUCTURE_RECURSION_H
 
 
 void swap(int *array, int index1, int index2);
@@ -13,4 +13,4 @@ int factorial(int n);
 int fibo(int n);
 int *recursion_insertion(int arr[], int n, int l);
 
-#endif //UNTITLED3_RECURSION_H
+#endif //DATASTRUCTURE_RECURSION_H

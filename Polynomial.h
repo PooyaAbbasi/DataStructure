@@ -1,8 +1,8 @@
 //
 // Created by abbasi on ۰۹/۱۱/۲۰۲۳.
 //
-#ifndef UNTITLED3_POLYNOMIAL_H
-#define UNTITLED3_POLYNOMIAL_H
+#ifndef DATASTRUCTURE_POLYNOMIAL_H
+#define DATASTRUCTURE_POLYNOMIAL_H
 #include <iostream>
 #include <cmath>
 
@@ -327,4 +327,4 @@ public:
 };
 
 
-#endif //UNTITLED3_POLYNOMIAL_H
+#endif //DATASTRUCTURE_POLYNOMIAL_H

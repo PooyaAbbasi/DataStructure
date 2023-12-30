@@ -2,8 +2,8 @@
 // Created by abasiy on ۱۷/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_NODE_H
-#define UNTITLED3_NODE_H
+#ifndef DATASTRUCTURE_NODE_H
+#define DATASTRUCTURE_NODE_H
 
 template <class T>
 class Node{
@@ -45,4 +45,4 @@ public:
 
 };
 
-#endif //UNTITLED3_NODE_H
+#endif //DATASTRUCTURE_NODE_H

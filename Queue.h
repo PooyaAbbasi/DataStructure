@@ -1,5 +1,5 @@
-#ifndef UNTITLED3_QUEUE_H
-#define UNTITLED3_QUEUE_H
+#ifndef DATASTRUCTURE_QUEUE_H
+#define DATASTRUCTURE_QUEUE_H
 
 template<class T>
 class Queue {
@@ -52,4 +52,4 @@ public:
     }
 };
 
-#endif //UNTITLED3_QUEUE_H
+#endif //DATASTRUCTURE_QUEUE_H

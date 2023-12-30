@@ -2,8 +2,8 @@
 // Created by abasiy on ۲۲/۱۲/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_SORT_H
-#define UNTITLED3_SORT_H
+#ifndef DATASTRUCTURE_SORT_H
+#define DATASTRUCTURE_SORT_H
 
 template <class T>
 class Sort{
@@ -107,4 +107,4 @@ public:
 
 };
 
-#endif //UNTITLED3_SORT_H
+#endif //DATASTRUCTURE_SORT_H

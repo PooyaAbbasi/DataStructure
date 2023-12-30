@@ -2,8 +2,8 @@
 // Created by abasiy on ۲۳/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_BINARYNODE_H
-#define UNTITLED3_BINARYNODE_H
+#ifndef DATASTRUCTURE_BINARYNODE_H
+#define DATASTRUCTURE_BINARYNODE_H
 
 template <class T>
 class BinaryNode {
@@ -66,4 +66,4 @@ public:
 
 };
 
-#endif //UNTITLED3_BINARYNODE_H
+#endif //DATASTRUCTURE_BINARYNODE_H

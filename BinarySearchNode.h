@@ -2,8 +2,8 @@
 // Created by abasiy on ۱۰/۱۲/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_BINARYSEARCHNODE_H
-#define UNTITLED3_BINARYSEARCHNODE_H
+#ifndef DATASTRUCTURE_BINARYSEARCHNODE_H
+#define DATASTRUCTURE_BINARYSEARCHNODE_H
 #include "iostream"
 using namespace std;
 
@@ -118,4 +118,4 @@ public:
 
 };
 
-#endif //UNTITLED3_BINARYSEARCHNODE_H
+#endif //DATASTRUCTURE_BINARYSEARCHNODE_H

@@ -2,8 +2,8 @@
 // Created by abasiy on ۲۱/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_TREE_H
-#define UNTITLED3_TREE_H
+#ifndef DATASTRUCTURE_TREE_H
+#define DATASTRUCTURE_TREE_H
 
 #include "TreeNode.h"
 
@@ -117,4 +117,4 @@ public:
 
 };
 
-#endif //UNTITLED3_TREE_H
+#endif //DATASTRUCTURE_TREE_H

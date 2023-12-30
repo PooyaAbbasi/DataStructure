@@ -2,8 +2,8 @@
 // Created by abasiy on ۰۴/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_STACK_H
-#define UNTITLED3_STACK_H
+#ifndef DATASTRUCTURE_STACK_H
+#define DATASTRUCTURE_STACK_H
 
 template <class T>
 class Stack {
@@ -39,4 +39,4 @@ public:
 
 };
 
-#endif //UNTITLED3_STACK_H
+#endif //DATASTRUCTURE_STACK_H

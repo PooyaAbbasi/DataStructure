@@ -2,8 +2,8 @@
 // Created by abasiy on ۰۴/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_EXPRESSIONEVALUATOR_H
-#define UNTITLED3_EXPRESSIONEVALUATOR_H
+#ifndef DATASTRUCTURE_EXPRESSIONEVALUATOR_H
+#define DATASTRUCTURE_EXPRESSIONEVALUATOR_H
 
 
 #include <string>
@@ -23,4 +23,4 @@ int get_result_of_statement(int first_var, int second_var, char operation);
 int postfixToResult(char *postfix, int* values, int num_of_vars);
 int get_num_of_vars(string &exp);
 
-#endif //UNTITLED3_EXPRESSIONEVALUATOR_H
+#endif //DATASTRUCTURE_EXPRESSIONEVALUATOR_H

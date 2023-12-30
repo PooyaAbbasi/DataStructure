@@ -2,8 +2,8 @@
 // Created by abasiy on ۰۷/۱۲/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_MINHEAPTREE_H
-#define UNTITLED3_MINHEAPTREE_H
+#ifndef DATASTRUCTURE_MINHEAPTREE_H
+#define DATASTRUCTURE_MINHEAPTREE_H
 #include <iostream>
 
 template<class T>
@@ -149,4 +149,4 @@ public:
 
 };
 
-#endif //UNTITLED3_MINHEAPTREE_H
+#endif //DATASTRUCTURE_MINHEAPTREE_H

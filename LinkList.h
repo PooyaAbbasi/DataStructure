@@ -2,8 +2,8 @@
 // Created by abasiy on ۱۷/۱۱/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_LINKLIST_H
-#define UNTITLED3_LINKLIST_H
+#ifndef DATASTRUCTURE_LINKLIST_H
+#define DATASTRUCTURE_LINKLIST_H
 #include "Node.h"
 #include <cstddef>
 #include <iostream>
@@ -247,4 +247,4 @@ public:
     }
 };
 
-#endif //UNTITLED3_LINKLIST_H
+#endif //DATASTRUCTURE_LINKLIST_H

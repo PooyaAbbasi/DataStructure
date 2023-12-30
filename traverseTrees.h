@@ -7,8 +7,8 @@
  * inorder, preorder, postorder for Binary trees.
  * */
 
-#ifndef UNTITLED3_TRAVERSETREES_H
-#define UNTITLED3_TRAVERSETREES_H
+#ifndef DATASTRUCTURE_TRAVERSETREES_H
+#define DATASTRUCTURE_TRAVERSETREES_H
 
 #include "BinaryTree.h"
 #include "BinaryNode.h"
@@ -82,4 +82,4 @@ char *getDFSof(Tree<T> tree, int max_child){
 }
 
 
-#endif //UNTITLED3_TRAVERSETREES_H
+#endif //DATASTRUCTURE_TRAVERSETREES_H

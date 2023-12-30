@@ -2,8 +2,8 @@
 // Created by abasiy on ۱۰/۱۲/۲۰۲۳.
 //
 
-#ifndef UNTITLED3_BINARYSEARCHTREE_H
-#define UNTITLED3_BINARYSEARCHTREE_H
+#ifndef DATASTRUCTURE_BINARYSEARCHTREE_H
+#define DATASTRUCTURE_BINARYSEARCHTREE_H
 
 #include "BinaryTree.h"
 #include "BinarySearchNode.h"
@@ -383,4 +383,4 @@ public:
 
 };
 
-#endif //UNTITLED3_BINARYSEARCHTREE_H
+#endif //DATASTRUCTURE_BINARYSEARCHTREE_H

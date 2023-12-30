@@ -3,8 +3,8 @@
 //
 #include "LinkList.h"
 
-#ifndef UNTITLED3_TREENODE_H
-#define UNTITLED3_TREENODE_H
+#ifndef DATASTRUCTURE_TREENODE_H
+#define DATASTRUCTURE_TREENODE_H
 
 template <class T>
 class TreeNode {
@@ -90,4 +90,4 @@ public:
 
 
 };
-#endif //UNTITLED3_TREENODE_H
+#endif //DATASTRUCTURE_TREENODE_H
