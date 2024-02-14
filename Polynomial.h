@@ -5,12 +5,55 @@
 #define DATASTRUCTURE_POLYNOMIAL_H
 #include <iostream>
 #include <cmath>
+#include "sort.h"
 
 using namespace std;
 
 struct Term{
     int coeff;
     int ex;
+
+    bool operator==(Term next) const {
+        return (this->coeff == next.coeff && this->ex == next.ex);
+    }
+
+    bool operator!=(Term next) const {
+        return (this->coeff != next.coeff || this->ex != next.ex);
+    }
+
+    bool operator<(Term next) const{
+        if (this->ex != next.ex) {
+            return this->ex < next.ex;
+        } else {
+            return this->coeff < next.coeff;
+        }
+    }
+
+    bool operator<=(Term next) const{
+        if (this->ex != next.ex) {
+            return this->ex <= next.ex;
+        } else {
+            return this->coeff <= next.coeff;
+        }
+    }
+
+    bool operator>(Term next) const{
+        if (this->ex != next.ex) {
+            return this->ex > next.ex;
+        } else {
+            return this->coeff > next.coeff;
+        }
+    }
+
+    bool operator>=(Term next) const{
+        if (this->ex != next.ex) {
+            return this->ex >= next.ex;
+        } else {
+            return this->coeff >= next.coeff;
+        }
+    }
+
+
 };
 
 const Term empty_term = {0, 0};
@@ -54,60 +97,6 @@ private:
         }
         delete[] terms;
         this->terms = clear_terms;
-    }
-
-    void static merge(Term* maineTerms, int low, int mid, int high) {
-        int i, j, main_terms_index;
-        int len1 = mid - low + 1;
-        int len2 = high - mid;
-
-        Term* terms1 = new Term[len1];
-        Term* terms2 = new Term[len2];
-
-        for (i = 0; i < len1; i++)
-            terms1[i] = maineTerms[low + i];
-        for (j = 0; j < len2; j++)
-            terms2[j] = maineTerms[mid + 1 + j];
-
-        i = 0;
-        j = 0;
-        main_terms_index = low;
-        while (i < len1 && j < len2) {
-            if (terms1[i].ex >= terms2[j].ex) {
-                maineTerms[main_terms_index] = terms1[i];
-                i++;
-            } else {
-                maineTerms[main_terms_index] = terms2[j];
-                j++;
-            }
-            main_terms_index++;
-        }
-
-        while (i < len1) {
-            maineTerms[main_terms_index] = terms1[i];
-            i++;
-            main_terms_index++;
-        }
-
-        while (j < len2) {
-            maineTerms[main_terms_index] = terms2[j];
-            j++;
-            main_terms_index++;
-        }
-
-        delete[] terms1;
-        delete[] terms2;
-    }
-
-    void static mergeSort(Term* maineTerms, int low, int high) {
-        if (low < high) {
-            int mid = (low + high) / 2;
-
-            mergeSort(maineTerms, low, mid);
-            mergeSort(maineTerms, mid + 1, high);
-
-            merge(maineTerms, low, mid, high);
-        }
     }
 
 public:
@@ -247,29 +236,11 @@ public:
         this->clearTerms();
     }
 
-    int findTermAccordingToExponential(int exponent){
-        /**
-         * return index of term with ex = exponent with binary search algorithm */
-        int left = 0;
-        int right = this->firstEmptyTermIndex;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (terms[mid].ex == exponent) {
-                return mid;
-            }
-            if (terms[mid].ex > exponent) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        return -1; // return -1 if the term is not found
-    }
 
     void sort(){
         /**
          * sort polynomial according to exponents in descending order */
-        mergeSort(this->terms, 0, this->len-1);
+        Sort<Term>::mergeSort(this->terms, this->len-1);
         this->setFirstEmptyTermPosition();
     }
 

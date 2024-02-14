@@ -27,7 +27,7 @@ public:
         j = 0;
         main_arr_index = low;
         while (i < len1 && j < len2) {
-            if (arr_1[i].ex >= arr_2[j].ex) {
+            if (arr_1[i] >= arr_2[j]) {
                 main_arr[main_arr_index] = arr_1[i];
                 i++;
             } else {
@@ -53,12 +53,12 @@ public:
         delete[] arr_2;
     }
 
-    static void mergeSort(T *array, int low, int high){
+    static void mergeSort(T *array, int high, int low = 0){
         if (low < high) {
-            int mid = (high - low) /2 ;
+            int mid = (high + low) /2 ;
 
-            mergeSort(array, low, mid);
-            mergeSort(array, mid + 1, high);
+            mergeSort(array, mid, low);
+            mergeSort(array, high, mid + 1);
 
             Sort::merge(array, low, mid, high);
         }
